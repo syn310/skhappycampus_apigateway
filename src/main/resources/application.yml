@@ -1,0 +1,28 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: skhappycampus-apigateway-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+
+zuul:
+  routes:
+    skhappycampus-backend:
+      service-id: skhappycampus-backend
+      url: http://localhost:3006
+      path: /user/**
+    skhappycampus-backend-partner:
+      service-id: skhappycampus-backend-partner
+      url: http://localhost:3007
+      path: /partner/**
+    skhappycampus-backend-admin:
+      service-id: skhappycampus-backend-admin
+      url: http://localhost:3008
+      path: /admin/**
